@@ -6,34 +6,17 @@ namespace NumberInWords.Test
     public class TestConvert
     {
         [TestMethod]
-        public void Test1()
-        {
-            var convert = new RoubleToStringProvider(true, true, true);
-            var m = new Money(1000000);
-            var s = convert.MoneyToString(m);
-
-        }
-
-        [TestMethod]
         public void Test2()
         {
             const int n = 1402368;
-            var s = RusNumber.Str(n);
+            var s = RusNumber.Str(n).Trim();
             Assert.IsTrue(s.Contains("четыреста"));
             const double d = 1402368.5;
             var c = d.ToString("C");
             var a = d.ToString("N");
+            Assert.AreEqual(s, "Один миллион четыреста две тысячи триста шестьдесят восемь");
+            Assert.AreEqual(c, "1 402 368,50 ₽");
+            Assert.AreEqual(a, "1 402 368,50");
         }
-
-        [TestMethod]
-        public void Test3()
-        {
-            const int n = 51200;
-            var s = RusNumber.Str(n);
-            Assert.IsTrue(s.Contains("двести"));
-            var c = n.ToString("C");
-            var a = n.ToString("N");
-        }
-
     }
 }
